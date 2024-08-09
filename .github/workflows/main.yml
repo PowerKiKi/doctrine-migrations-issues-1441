@@ -1,0 +1,33 @@
+name: main
+on: [push, pull_request]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        services:
+            mariadb:
+                image: mariadb:10.6
+                ports:
+                    - 3306:3306
+                env:
+                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
+                    MYSQL_DATABASE: test
+                    MYSQL_USER: test
+                    MYSQL_PASSWORD: test
+                options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=5
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.2'
+
+            - name: Setup problem matchers for PHP
+              run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+            - name: Setup problem matchers for PHPUnit
+              run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+            # Tests
+            - run: ./vendor/bin/phpunit
