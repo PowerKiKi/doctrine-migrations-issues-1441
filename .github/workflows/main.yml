@@ -29,5 +29,5 @@ jobs:
             - name: Setup problem matchers for PHPUnit
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            # Tests
+            - run: composer install
             - run: ./vendor/bin/phpunit
