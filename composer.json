@@ -11,8 +11,8 @@
     },
     "require": {
         "php": "^8.2",
-        "phpunit/phpunit": "^11.3",
         "doctrine/orm": "^3.2",
+        "phpunit/phpunit": "^11.4",
         "symfony/cache": "^7.1"
     }
 }
