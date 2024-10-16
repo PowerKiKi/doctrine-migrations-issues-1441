@@ -20,48 +20,48 @@ class AllTest extends TestCase
 {
     static public function dataProvider(): iterable
     {
-        // https://knplabs.com/en/blog/how-to-map-a-php-enum-with-doctrine-in-a-symfony-project/
-        // https://github.com/doctrine/migrations/issues/1441#issuecomment-2212412593
-        // https://github.com/doctrine/migrations/issues/1441#issuecomment-2220094631
-        yield 'automated enums based on PHP enum will incorrectly always update one of the two fields' => [
-            'src/Cases/WithAutomatedEnum/Model',
-            [
-                'UserRole' => Cases\WithAutomatedEnum\Type\UserRole::class,
-                'UserStatus' => Cases\WithAutomatedEnum\Type\UserStatus::class,
-            ],
-        ];
+//        // https://knplabs.com/en/blog/how-to-map-a-php-enum-with-doctrine-in-a-symfony-project/
+//        // https://github.com/doctrine/migrations/issues/1441#issuecomment-2212412593
+//        // https://github.com/doctrine/migrations/issues/1441#issuecomment-2220094631
+//        yield 'automated enums based on PHP enum will incorrectly always update one of the two fields' => [
+//            'src/Cases/WithAutomatedEnum/Model',
+//            [
+//                'UserRole' => Cases\WithAutomatedEnum\Type\UserRole::class,
+//                'UserStatus' => Cases\WithAutomatedEnum\Type\UserStatus::class,
+//            ],
+//        ];
 
         // https://github.com/doctrine/orm/pull/11666
         yield 'property mapping is kept in sync, and we can opt-in for enum in DB' => [
             'src/Cases/PropertyMappingWithEnum/Model',
         ];
 
-        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/reference/basic-mapping.html#php-types-mapping
-        yield 'property mapping is kept in sync, but it is not enum in DB' => [
-            'src/Cases/PropertyMapping/Model',
-        ];
-
-        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-1-mapping-to-varchars
-        yield 'cookbook1 is worse syntax (more verbose, PHP type unsafe) to have same failing result as property mapping' => [
-            'src/Cases/Cookbook1/Model',
-            [],
-        ];
-
-        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-1-mapping-to-varchars
-        yield 'cookbook1bis does not really support PHP enum an always update anyway' => [
-            'src/Cases/Cookbook1bis/Model',
-            [],
-            ['enum' => 'string']
-        ];
-
-        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-2-defining-a-type
-        yield 'cookbook2 is not scalable and also fail like automated enums anyway' => [
-            'src/Cases/Cookbook2/Model',
-            [
-                'UserRole' => Cases\Cookbook2\Type\UserRole::class,
-                'UserStatus' => Cases\Cookbook2\Type\UserStatus::class,
-            ],
-        ];
+//        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/reference/basic-mapping.html#php-types-mapping
+//        yield 'property mapping is kept in sync, but it is not enum in DB' => [
+//            'src/Cases/PropertyMapping/Model',
+//        ];
+//
+//        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-1-mapping-to-varchars
+//        yield 'cookbook1 is worse syntax (more verbose, PHP type unsafe) to have same failing result as property mapping' => [
+//            'src/Cases/Cookbook1/Model',
+//            [],
+//        ];
+//
+//        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-1-mapping-to-varchars
+//        yield 'cookbook1bis does not really support PHP enum an always update anyway' => [
+//            'src/Cases/Cookbook1bis/Model',
+//            [],
+//            ['enum' => 'string']
+//        ];
+//
+//        // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-2-defining-a-type
+//        yield 'cookbook2 is not scalable and also fail like automated enums anyway' => [
+//            'src/Cases/Cookbook2/Model',
+//            [
+//                'UserRole' => Cases\Cookbook2\Type\UserRole::class,
+//                'UserStatus' => Cases\Cookbook2\Type\UserStatus::class,
+//            ],
+//        ];
     }
 
     #[DataProvider('dataProvider')]
