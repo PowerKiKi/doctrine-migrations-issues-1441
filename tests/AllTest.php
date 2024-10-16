@@ -31,10 +31,14 @@ class AllTest extends TestCase
             ],
         ];
 
+        // https://github.com/doctrine/orm/pull/11666
+        yield 'property mapping is kept in sync, and we can opt-in for enum in DB' => [
+            'src/Cases/PropertyMappingWithEnum/Model',
+        ];
+
         // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/reference/basic-mapping.html#php-types-mapping
         yield 'property mapping is kept in sync, but it is not enum in DB' => [
             'src/Cases/PropertyMapping/Model',
-            [],
         ];
 
         // https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/cookbook/mysql-enums.html#solution-1-mapping-to-varchars
@@ -61,7 +65,7 @@ class AllTest extends TestCase
     }
 
     #[DataProvider('dataProvider')]
-    public function test(string $path, array $types, array $typeMapping = []): void
+    public function test(string $path, array $types = [], array $typeMapping = []): void
     {
         $em = $this->createEntityManager($path, $types, $typeMapping);
 
